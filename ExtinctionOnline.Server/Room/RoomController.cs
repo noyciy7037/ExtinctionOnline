@@ -1,7 +1,4 @@
-﻿using ExtinctionOnline.Server.ClientData;
-using ExtinctionOnline.Server.Communication;
-
-namespace ExtinctionOnline.Server.Room
+﻿namespace ExtinctionOnline.Server
 {
     internal class RoomController
     {

@@ -1,8 +1,6 @@
-﻿using ExtinctionOnline.Server.ClientData;
-using ExtinctionOnline.Server.Communication;
-using System.Text.Json;
+﻿using System.Text.Json;
 
-namespace ExtinctionOnline.Server.Room
+namespace ExtinctionOnline.Server
 {
     internal class RoomData
     {

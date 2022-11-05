@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 
-namespace ExtinctionOnline.Server.Communication
+namespace ExtinctionOnline.Server
 {
     public class MessageData
     {

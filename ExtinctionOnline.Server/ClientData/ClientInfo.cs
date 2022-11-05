@@ -1,6 +1,6 @@
 ﻿using Fleck;
 
-namespace ExtinctionOnline.Server.ClientData
+namespace ExtinctionOnline.Server
 {
     public class ClientInfo
     {

@@ -1,8 +1,4 @@
-﻿using ExtinctionOnline.Server.ClientData;
-using ExtinctionOnline.Server.Communication;
-using ExtinctionOnline.Server.Room;
-
-namespace ExtinctionOnline.Server
+﻿namespace ExtinctionOnline.Server
 {
     internal class Commands
     {
