@@ -12,6 +12,7 @@ jobs:
       matrix:
         dotnet-version: ['6.0.x']
         publishes: [ win-x64, osx-x64, linux-x64 ]
+        contained: [true, false]
     steps:
       - uses: actions/checkout@v3
       - name: Setup .NET Core SDK ${{ matrix.dotnet-version }}
@@ -28,11 +29,11 @@ jobs:
       - name: Install dependencies
         run: dotnet add package Fleck --version 1.2.0
       - name: Publish
-        run: dotnet publish -c Release -p:PublishSingleFile=true --no-self-contained -r ${{ matrix.publishes }} 
+        run: dotnet publish -c Release -p:PublishSingleFile=true --self-contained ${{ matrix.contained }}  -r ${{ matrix.publishes }} 
              -o ./bin/Release/${{ matrix.publishes }}/
       - name: Upload build artifacts
         uses: actions/upload-artifact@v3
         with:
-          name: Extinction Online Server ${{ matrix.publishes }}
+          name: Extinction Online Server ${{ matrix.publishes }} ${{ matrix.contained == true && 'With Runtime' || matrix.contained == false && 'Without Runtime' }}
           path: |
             ExtinctionOnline.Server/bin/Release/${{ matrix.publishes }}/*
