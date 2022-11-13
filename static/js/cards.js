@@ -1,6 +1,8 @@
+"use strict";
 const cardTypes = {
     unknown: {
         id: "unknown",
+        prefix: "!",
         count: -1
     },
     one: {
