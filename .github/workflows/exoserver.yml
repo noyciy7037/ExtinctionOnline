@@ -1,0 +1,38 @@
+name: Extinction Online CI
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./ExtinctionOnline.Server
+    strategy:
+      matrix:
+        dotnet-version: ['6.0.x']
+        publishes: [ win-x64, osx-x64, linux-x64 ]
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup .NET Core SDK ${{ matrix.dotnet-version }}
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: ${{ matrix.dotnet-version }}
+      - uses: actions/cache@v3
+        with:
+          path: ~/.nuget/packages
+          # Look to see if there is a cache hit for the corresponding requirements file
+          key: ${{ runner.os }}-nuget-${{ hashFiles('**/packages.lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-nuget
+      - name: Install dependencies
+        run: dotnet add package Fleck --version 1.2.0
+      - name: Publish
+        run: dotnet publish -c Release -p:PublishSingleFile=true --no-self-contained -r ${{ matrix.publishes }} 
+             -o ./bin/Release/${{ matrix.publishes }}/
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: Extinction Online Server ${{ matrix.publishes }}
+          path: |
+            ExtinctionOnline.Server/bin/Release/${{ matrix.publishes }}/*
