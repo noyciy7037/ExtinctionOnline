@@ -17,23 +17,3 @@ socket.addEventListener('message', function (event) {
         controller.onGameMessage(obj);
     }
 });
-
-/*
-// ユーザのスクリプトを実行する
-var funText = "\"use strict\";return \"TEST MESSAGE\";";
-
-var workerFile = "\
-function testFunction(){" + funText +
-    "}\
-postMessage(testFunction());\
-onmessage = function(e){console.log(e);\
-}"
-
-var blob = new Blob([workerFile], {
-    type: "text/javascript"
-});
-
-var worker = new Worker(window.URL.createObjectURL(blob));
-worker.onmessage = function (e) {
-    console.log('Function result:', e.data);
-}*/

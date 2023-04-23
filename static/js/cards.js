@@ -78,7 +78,8 @@ const cardTypes = {
     extinction: {
         id: "extinction",
         prefix: "H",
-        count: 4
+        count: 4,
+        onGet: "target.cards.forEach(it => {discard(target,it);});"
     },
     annihilation: {
         id: "annihilation",
